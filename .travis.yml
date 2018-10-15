@@ -5,10 +5,8 @@ python:
   - "3.6"
 
 install:
-  - git clone https://github.com/MasterOdin/vpnc vpnc
-  - sudo bash setup_vpnc.sh
-  - pushd vpnc
-  - docker build -t vpnc:latest .
-  - docker run -t -d --privileged --name vpnc vpnc:latest
-  - docker exec -it vpnc curl https://canihazip.com/s
-  - docker exec -it vpnc curl https://internal.cisl.rpi.edu
+  - sudo bash setup_env.sh
+  - pushd docker-vpnc
+  - docker build -t azavea/vpnc .
+  - docker run --rm -ti --privileged --env-file .env --dns 8.8.8.8 azavea/vpnc /sbin/my_init --quiet -- /bin/sh -c "sleep 5 && curl 'https://api.ipify.org?format=json'"
+  - curl 'https://api.ipify.org?format=json'
