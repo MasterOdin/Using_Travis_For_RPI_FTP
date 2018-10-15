@@ -1,0 +1,6 @@
+echo -e "
+VPNC_GATEWAY=vpn.net.rpi.edu
+VPNC_ID=rpi
+VPNC_SECRET=${RPI_SECRET}
+VPNC_USERNAME=${RPI_USERNAME}
+VPNC_PASSWORD=${RPI_PASSWORD}" > vpnc/.env

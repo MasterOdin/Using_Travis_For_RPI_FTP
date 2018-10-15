@@ -6,7 +6,7 @@ python:
 
 install:
   - sudo bash setup_env.sh
-  - pushd docker-vpnc
+  - pushd vpnc
   - ls -la
   - docker build -t azavea/vpnc .
   - docker run --rm -ti --privileged --env-file .env --dns 8.8.8.8 azavea/vpnc /sbin/my_init --quiet -- /bin/sh -c "sleep 5 && curl 'https://api.ipify.org?format=json'"
