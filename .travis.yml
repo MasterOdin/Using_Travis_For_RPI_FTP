@@ -5,6 +5,6 @@ python:
   - "3.6"
 
 install:
-  - sudo apt-get install vpnc
+  - sudo apt-get -y install vpnc
   - sudo bash setup_vpnc.sh
   - sudo vpnc rpi
