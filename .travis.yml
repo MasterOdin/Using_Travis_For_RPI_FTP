@@ -5,6 +5,10 @@ python:
   - "3.6"
 
 install:
-  - sudo apt-get -y install vpnc
+  - git clone https://github.com/MasterOdin/vpnc vpnc
   - sudo bash setup_vpnc.sh
-  - sudo vpnc rpi
+  - pushd vpnc
+  - docker build -t vpnc:latest .
+  - docker run -t -d --privileged --name vpnc vpnc:latest
+  - docker exec -it vpnc curl https://canihazip.com/s
+  - docker exec -it vpnc curl https://internal.cisl.rpi.edu
