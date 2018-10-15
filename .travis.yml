@@ -1,0 +1,10 @@
+language: python
+sudo: true
+dist: xenial
+python:
+  - "3.6"
+
+install:
+  - sudo apt-get install vpnc
+  - sudo setup_vpnc.sh
+  - sudo vpnc rpi
