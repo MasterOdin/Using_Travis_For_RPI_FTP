@@ -2,7 +2,7 @@ FROM phusion/baseimage:0.11
 
 CMD ["/sbin/my_init"]
 
-RUN apt-get update -y && apt-get install -y build-essential vpnc ruby-full libsybdb5 freetds-dev freetds-common make
+RUN apt-get update -y && apt-get install -y build-essential vpnc ruby-full libsybdb5 freetds-dev freetds-common make sshpass
 RUN gem install tiny_tds
 # Setup vpnc service
 RUN mkdir -p /etc/service/vpnc

@@ -7,9 +7,7 @@ python:
 install:
   - sudo bash setup_env.sh
   - pushd vpnc
-  - ls -la
   - docker build -t azavea/vpnc .
 
 script:
-  - docker run --rm -ti --privileged --env-file .env --dns 8.8.8.8 azavea/vpnc /sbin/my_init --quiet -- /bin/sh -c "sleep 5 && curl 'https://api.ipify.org?format=json' && curl 'https://internal.cisl.rpi.edu/'"
-  - curl 'https://api.ipify.org?format=json'
+  - docker run --rm -ti -v ${TRAVIS_BUILD_DIR}:/srv --privileged --env-file .env --dns 8.8.8.8 azavea/vpnc /sbin/my_init --quiet -- /bin/sh -c "sleep 5 && curl 'https://api.ipify.org?format=json' && sshpass -p \"${RPI_PASSWORD}\" scp /srv/index.html ${RPI_USERNAME}@rcs.rpi.edu:/home/74/${RPI_USERNAME}/public_html"
