@@ -9,4 +9,9 @@ install:
   - docker pull masterodin/vpnc:latest
 
 script:
-  - docker run --rm -ti -v ${TRAVIS_BUILD_DIR}:/srv --privileged --env-file .env --dns 8.8.8.8 masterodin/vpnc:latest /sbin/my_init --quiet -- /bin/sh -c "sleep 5 && sshpass -p \"${RPI_PASSWORD}\" rsync /srv/index.html ${RPI_USERNAME}@rcs.rpi.edu:/home/74/${RPI_USERNAME}/public_html"
+  - pwd
+  - echo ${TRAVIS_BUILD_DIR}
+  - docker run --rm -ti -v ${TRAVIS_BUILD_DIR}:/srv --privileged --env-file .env --dns 8.8.8.8 masterodin/vpnc:latest /sbin/my_init --quiet -- /bin/sh -c "sleep 5 && ls -la /srv && sshpass -p \"${RPI_PASSWORD}\" rsync /srv/index.html ${RPI_USERNAME}@rcs.rpi.edu:/home/74/${RPI_USERNAME}/public_html"
+
+notifications:
+  email: false
